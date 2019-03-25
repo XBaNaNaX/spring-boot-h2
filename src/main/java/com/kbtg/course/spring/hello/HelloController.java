@@ -1,5 +1,6 @@
 package com.kbtg.course.spring.hello;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -7,17 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
+    @Autowired
+    private HelloService helloService;
+
     @GetMapping("/hello/{name}")
     public HelloResponse sayHi(@PathVariable String name) {
-        return generateSuccess(name);
+        return helloService.generateSuccess(name);
     }
-
-    private HelloResponse generateSuccess(@PathVariable String name) {
-        HelloResponse response = new HelloResponse();
-        response.setHeader(new Header(200,"Success"));
-        name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
-        response.setBody(new Body("Hello " + name));
-        return response;
-    }
-
 }
