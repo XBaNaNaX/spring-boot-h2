@@ -1,8 +1,8 @@
 package com.kbtg.course.spring.hello;
 
 public class HelloResponse {
-    Header HeaderObject;
-    Body BodyObject;
+    private Header HeaderObject;
+    private Body BodyObject;
 
 
     // Getter Methods
